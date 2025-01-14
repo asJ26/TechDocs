@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-blue: #0066cc;
+    --accent-blue: #0066cc;
+    --background-light: #ffffff;
+    --background-dark: #000000;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-dark: #e2e8f0;
+  }
+
+  body {
+    @apply bg-white text-[#1a202c] dark:bg-black dark:text-[#e2e8f0] transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .heading-primary {
+    @apply text-2xl lg:text-3xl font-bold text-[#1a202c] dark:text-white mb-4;
+  }
+
+  .heading-secondary {
+    @apply text-xl lg:text-2xl font-semibold text-[#2d3748] dark:text-[#e2e8f0] mb-3;
+  }
+
+  .text-content {
+    @apply text-[#4a5568] dark:text-gray-400 leading-relaxed;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 lg:p-6 border border-gray-100 dark:border-gray-800;
+  }
+}
+
+@layer utilities {
+  .prose {
+    @apply max-w-none text-[15px] lg:text-base;
+  }
+
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    @apply text-[#1a202c] dark:text-white font-bold scroll-mt-20 lg:scroll-mt-16;
+  }
+
+  .prose h1 {
+    @apply text-2xl lg:text-3xl mb-4 mt-6;
+  }
+
+  .prose h2 {
+    @apply text-xl lg:text-2xl mb-3 mt-8 pb-2 border-b border-gray-200 dark:border-gray-800;
+  }
+
+  .prose h3 {
+    @apply text-lg lg:text-xl mb-3 mt-6;
+  }
+
+  .prose p {
+    @apply text-[#4a5568] dark:text-gray-400 leading-relaxed mb-4;
+  }
+
+  .prose ul {
+    @apply list-disc list-inside mb-4 text-[#4a5568] dark:text-gray-400 space-y-2;
+  }
+
+  .prose ol {
+    @apply list-decimal list-inside mb-4 text-[#4a5568] dark:text-gray-400 space-y-2;
+  }
+
+  .prose code {
+    @apply font-mono text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded;
+  }
+
+  .prose pre {
+    @apply bg-gray-100 dark:bg-gray-800 p-3 lg:p-4 rounded-lg overflow-x-auto mb-4 text-sm lg:text-base;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0 text-[#1a202c] dark:text-gray-200;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .prose a {
+    @apply text-[#0066cc] dark:text-[#0066cc] hover:underline;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-[#0066cc] dark:border-[#0066cc] pl-4 italic my-4 text-[#4a5568] dark:text-gray-400;
+  }
+
+  .prose table {
+    @apply w-full border-collapse mb-4 text-sm lg:text-base;
+  }
+
+  .prose th, .prose td {
+    @apply border border-gray-200 dark:border-gray-800 p-2 lg:p-3 text-[#4a5568] dark:text-gray-400;
+  }
+
+  .prose th {
+    @apply bg-gray-50 dark:bg-gray-900 font-semibold;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* Table of Contents scrollbar */
+.toc-scrollbar::-webkit-scrollbar {
+  @apply w-1;
+}
+
+.toc-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.toc-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 dark:bg-gray-700 rounded-full;
+}
+
+/* Table of Contents hover effect */
+.toc-scrollbar:hover::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .prose {
+    @apply text-[15px];
+  }
+
+  .prose pre {
+    @apply -mx-4 rounded-none;
+  }
+
+  .prose pre code {
+    @apply px-4;
+  }
+
+  .prose table {
+    @apply -mx-4 w-[calc(100%+2rem)];
+  }
+}
