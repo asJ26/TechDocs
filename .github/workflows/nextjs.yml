@@ -18,7 +18,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_BASE_URL: https://asj26.github.io/TechDocs
       NODE_ENV: production
     steps:
       - name: Checkout
@@ -30,19 +29,11 @@ jobs:
           node-version: "20"
           cache: 'npm'
       
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules .next package-lock.json
-          npm install
-          npm install styled-jsx@latest @swc/helpers@latest
-          npm install --save-dev @types/node tailwindcss postcss autoprefixer
+      - name: Install dependencies
+        run: npm ci
       
       - name: Build with Next.js
-        run: |
-          npm run build
-        env:
-          NEXT_PUBLIC_BASE_URL: https://asj26.github.io/TechDocs
-          NODE_ENV: production
+        run: npm run build
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
