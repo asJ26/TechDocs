@@ -18,7 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_BASE_PATH: /TechDocs
+      NEXT_PUBLIC_BASE_URL: https://asj26.github.io/TechDocs
+      NODE_ENV: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,15 +31,12 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm install --save-dev @types/node
       
       - name: Build with Next.js
         run: npm run build
-        env:
-          NODE_ENV: production
-      
-      - name: Create CNAME file
-        run: echo "docs.example.com" > ./out/CNAME
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
