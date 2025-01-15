@@ -23,12 +23,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
           
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install -g cross-env
         
       - name: Build
-        run: npm run build
+        run: npm run deploy
         
       - name: Configure Pages
         uses: actions/configure-pages@v4
