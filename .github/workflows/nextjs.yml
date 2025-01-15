@@ -1,4 +1,4 @@
-site iname: Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -13,6 +13,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_BASE_PATH: /TechDocs
+      NODE_ENV: production
     steps:
       - uses: actions/checkout@v4
       
