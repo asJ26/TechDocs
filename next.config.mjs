@@ -12,12 +12,30 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   },
-  // Remove basePath and assetPrefix when using custom domain
   trailingSlash: true,
-  // Ensure proper path handling in production
   env: {
     NEXT_PUBLIC_BASE_URL: isProd ? 'https://asj26.github.io/TechDocs' : ''
-  }
-};
+  },
+  webpack: (config, { dev, isServer }) => {
+    // Fixes npm packages that depend on `fs` module
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+        path: false,
+      };
+    }
+
+    // Improve caching
+    config.cache = {
+      type: 'filesystem',
+      cacheDirectory: '.next/cache',
+      buildDependencies: {
+        config: [import.meta.url],
+      },
+    };
+
+    return config;
+  },
+}
 
 export default nextConfig;

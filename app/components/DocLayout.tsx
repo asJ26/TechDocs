@@ -11,13 +11,13 @@ interface DocLayoutProps {
   children: React.ReactNode;
 }
 
-export function DocLayout({ 
+export const DocLayout = ({ 
   icon, 
   title, 
   partNumber, 
   readTime, 
   children 
-}: DocLayoutProps) {
+}: DocLayoutProps) => {
   return (
     <div className="min-h-screen w-full p-8">
       {/* Mobile Header - Full Width */}
