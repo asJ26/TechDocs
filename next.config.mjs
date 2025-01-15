@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production';
-const basePath = isProd ? '/TechDocs' : '';
+const repoName = 'TechDocs';
 
 const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
   },
-  basePath,
-  assetPrefix: isProd ? `${basePath}/` : '',
+  basePath: isProd ? `/${repoName}` : '',
+  assetPrefix: isProd ? `/${repoName}/` : '',
   trailingSlash: true,
   reactStrictMode: true,
   eslint: {
@@ -18,8 +18,11 @@ const nextConfig = {
     ignoreBuildErrors: true
   },
   env: {
-    NEXT_PUBLIC_BASE_PATH: basePath,
-  }
+    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repoName}` : '',
+  },
+  // This is needed for GitHub Pages deployment
+  distDir: 'out',
+  cleanDistDir: true,
 };
 
 export default nextConfig;
