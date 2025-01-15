@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "TechDocs",
   description: "Your Technical Documentation Hub",
+  metadataBase: new URL('https://asj26.github.io/TechDocs'),
 };
 
 export default function RootLayout({

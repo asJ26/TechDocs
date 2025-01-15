@@ -6,10 +6,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getBasePath() {
-  return process.env.NODE_ENV === 'production' ? '/TechDocs' : '';
+  return process.env.NEXT_PUBLIC_BASE_PATH || '';
 }
 
 export function withBasePath(path: string) {
   const basePath = getBasePath();
-  return `${basePath}${path}`;
+  // Remove any leading slashes from the path
+  const cleanPath = path.replace(/^\/+/, '');
+  // Combine basePath with cleanPath, ensuring no double slashes
+  return basePath ? `${basePath}/${cleanPath}` : `/${cleanPath}`;
 }
